@@ -25,13 +25,12 @@
             min-height: 100vh;
         }
 
-        /* --- Main wrapper --- */
         .application-wrapper {
             max-width: 950px;
             width: 100%;
         }
 
-        /* --- Toolbar / Download button --- */
+        /* --- Toolbar with two download buttons --- */
         .toolbar {
             display: flex;
             flex-wrap: wrap;
@@ -43,7 +42,7 @@
         }
 
         .toolbar h1 {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             font-weight: 600;
             color: #1a2b3c;
             letter-spacing: -0.01em;
@@ -54,17 +53,23 @@
             margin-right: 8px;
         }
 
+        .download-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
         .btn-download {
             background: #1a2b3c;
             color: white;
             border: none;
-            padding: 0.8rem 2rem;
+            padding: 0.75rem 1.6rem;
             border-radius: 40px;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 9px;
             cursor: pointer;
             transition: background 0.2s, transform 0.1s;
             box-shadow: 0 4px 14px rgba(26, 43, 60, 0.25);
@@ -72,7 +77,7 @@
         }
 
         .btn-download i {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
         }
 
         .btn-download:hover {
@@ -84,7 +89,22 @@
             transform: scale(0.97);
         }
 
-        /* --- The document (letter + resume) --- */
+        .btn-download.cover-btn {
+            background: #2563eb;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-download.cover-btn:hover {
+            background: #1a2b3c;
+        }
+
+        /* --- Document stack --- */
+        .document-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
         .document {
             background: white;
             border-radius: 16px;
@@ -93,11 +113,34 @@
             border: 1px solid #dce4ed;
         }
 
-        /* --- Cover letter section --- */
+        /* --- Section label above each document --- */
+        .doc-label {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.7rem;
+            padding: 0 0.4rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #2563eb;
+        }
+
+        .doc-label i {
+            font-size: 0.95rem;
+        }
+
+        .doc-label .line {
+            flex: 1;
+            height: 1px;
+            background: #cbd7e3;
+        }
+
+        /* ============ COVER LETTER STYLES ============ */
         .cover-letter {
-            padding: 2.8rem 2.8rem 2.2rem 2.8rem;
+            padding: 2.8rem 2.8rem 2.5rem 2.8rem;
             background: white;
-            border-bottom: 3px solid #2563eb;
         }
 
         .cover-letter .header-name {
@@ -194,10 +237,10 @@
             margin-top: 0.8rem;
         }
 
-        /* --- Resume section --- */
+        /* ============ RESUME STYLES ============ */
         .resume-section {
-            padding: 2.2rem 2.8rem 2.5rem 2.8rem;
-            background: #fafcff;
+            padding: 2.5rem 2.8rem 2.8rem 2.8rem;
+            background: white;
         }
 
         .resume-section .resume-title {
@@ -216,7 +259,6 @@
             margin-right: 8px;
         }
 
-        /* --- Two-column layout for resume --- */
         .resume-grid {
             display: grid;
             grid-template-columns: 1fr 1.8fr;
@@ -401,7 +443,7 @@
         }
 
         .resume-right .ref-card {
-            background: white;
+            background: #f7fafd;
             padding: 0.85rem 1rem;
             border-radius: 8px;
             border-left: 4px solid #2563eb;
@@ -428,7 +470,7 @@
             text-align: center;
             font-size: 0.8rem;
             color: #5f738a;
-            margin-top: 1.5rem;
+            margin-top: 2rem;
             padding-top: 1rem;
             border-top: 1px solid #dce4ed;
         }
@@ -490,6 +532,10 @@
                 text-align: center;
             }
 
+            .download-buttons {
+                justify-content: center;
+            }
+
             .btn-download {
                 justify-content: center;
             }
@@ -520,9 +566,19 @@
             .resume-section {
                 padding: 1.2rem 1rem 1.5rem;
             }
+
+            .download-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn-download {
+                width: 100%;
+                justify-content: center;
+            }
         }
 
-        /* --- Print styles for the PDF --- */
+        /* --- Print styles --- */
         @media print {
             body {
                 background: white;
@@ -530,39 +586,21 @@
                 margin: 0;
             }
 
-            .toolbar {
+            .toolbar,
+            .doc-label,
+            .footer-note,
+            .loading-overlay {
                 display: none !important;
+            }
+
+            .document-stack {
+                gap: 0;
             }
 
             .document {
                 box-shadow: none;
                 border-radius: 0;
                 border: none;
-            }
-
-            .cover-letter {
-                padding: 2rem 2rem 1.5rem 2rem;
-                border-bottom: 2px solid #2563eb;
-                page-break-after: always;
-                break-after: page;
-            }
-
-            .resume-section {
-                padding: 1.5rem 2rem 2rem 2rem;
-                background: white;
-            }
-
-            .resume-right .ref-card {
-                box-shadow: none;
-                border: 1px solid #dce4ed;
-            }
-
-            .footer-note {
-                display: none !important;
-            }
-
-            .loading-overlay {
-                display: none !important;
             }
         }
     </style>
@@ -579,233 +617,266 @@
 
     <div class="application-wrapper">
 
-        <!-- Toolbar with download button -->
+        <!-- Toolbar with two download buttons -->
         <div class="toolbar">
             <h1><i class="fas fa-file-signature"></i> Librarian Application — Oshwal College</h1>
-            <button class="btn-download" id="downloadBtn">
-                <i class="fas fa-file-pdf"></i> Download Application (PDF)
-            </button>
+            <div class="download-buttons">
+                <button class="btn-download cover-btn" id="downloadCoverBtn">
+                    <i class="fas fa-file-pdf"></i> Cover Letter (PDF)
+                </button>
+                <button class="btn-download" id="downloadResumeBtn">
+                    <i class="fas fa-file-pdf"></i> Resume (PDF)
+                </button>
+            </div>
         </div>
 
-        <!-- Document container -->
-        <div class="document" id="applicationDocument">
+        <div class="document-stack">
 
-            <!-- ========== COVER LETTER ========== -->
-            <div class="cover-letter">
-                <div class="header-name">Celestino Otieno</div>
-                <div class="header-sub">School Librarian &amp; ICT Educator · System Librarian</div>
-
-                <div class="contact-line">
-                    <span><i class="fas fa-phone-alt"></i> +254 714 019 736</span>
-                    <span><i class="fas fa-envelope"></i> onyangocelestino@gmail.com</span>
-                    <span><i class="fas fa-map-pin"></i> Nairobi, Kenya</span>
-                    <span><i class="fab fa-linkedin"></i> linkedin.com/in/celestino-otieno</span>
+            <!-- ============================================= -->
+            <!-- COVER LETTER DOCUMENT                         -->
+            <!-- ============================================= -->
+            <div>
+                <div class="doc-label">
+                    <i class="fas fa-envelope-open-text"></i>
+                    Cover Letter
+                    <span class="line"></span>
                 </div>
+                <div class="document" id="coverLetterDocument">
+                    <div class="cover-letter">
+                        <div class="header-name">Celestino Otieno</div>
+                        <div class="header-sub">School Librarian &amp; ICT Educator · System Librarian</div>
 
-                <div class="date-line" id="letterDate"></div>
-
-                <div class="recipient">
-                    <strong>The Hiring Committee</strong><br>
-                    Oshwal College<br>
-                    Nairobi, Kenya
-                </div>
-
-                <div class="subject-line">
-                    RE: APPLICATION FOR THE POSITION OF LIBRARIAN
-                </div>
-
-                <p>Dear Hiring Committee,</p>
-
-                <p>
-                    I am writing to express my enthusiastic interest in the Librarian position at Oshwal College, as advertised in your recent vacancy announcement. With a Bachelor of Science in Information Science and over three years of hands-on experience in academic and special library environments, I am confident that my skills and qualifications align perfectly with your requirements, particularly your need for a candidate proficient in the <strong>Koha Library Management System</strong>.
-                </p>
-
-                <p>
-                    Your vacancy specifies the need for a Librarian with a Diploma or Bachelor’s Degree in Library &amp; Information Science and proficiency in Koha. My academic background and professional experience directly meet these criteria. I have extensive, practical expertise in <strong>Koha ILS administration</strong>, having managed, optimized, and configured the system at both Kenya National Library Service and Lukenya British Curriculum School. My responsibilities included configuring circulation rules, cataloguing with MARC21 and DDC, and generating analytical reports to support library management and data-driven decision-making.
-                </p>
-
-                <p>
-                    In my current role as School Librarian &amp; ICT Educator at Lukenya British Curriculum School, I oversee full library operations using Koha ILS, manage the complete records lifecycle, and provide technical support for over 200 users. Previously, as a System Librarian at Kenya National Library Service, I trained over 50 staff and community members, redesigned finding aids that reduced research time by 25%, and assisted in archival management for historical government publications. These experiences have honed my ability to manage both traditional and digital collections effectively.
-                </p>
-
-                <p>
-                    I am particularly drawn to Oshwal College's reputation as a leading Higher Education Institution and its collaboration with top UK universities. I am eager to bring my commitment to library operations excellence, my technical skills in modern ILS platforms, and my passion for creating inclusive, resource-rich learning environments to your academic community. I am confident I can contribute to the smooth functioning of your library and enhance the research and learning experience for your students and faculty.
-                </p>
-
-                <p>
-                    Thank you for considering my application. I have attached my resume for your review and would welcome the opportunity to discuss how my skills and experience can benefit Oshwal College. I am available for an interview at your earliest convenience.
-                </p>
-
-                <div class="closing">
-                    <p>Yours sincerely,</p>
-                    <p class="signature-name">Celestino Otieno</p>
-                </div>
-            </div>
-
-            <!-- ========== RESUME ========== -->
-            <div class="resume-section">
-                <div class="resume-title"><i class="fas fa-briefcase"></i> Curriculum Vitae</div>
-
-                <div class="resume-grid">
-                    <!-- LEFT COLUMN -->
-                    <div class="resume-left">
-                        <!-- Contact -->
-                        <div class="section">
-                            <h4>Contact</h4>
-                            <div class="contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+254714019736">+254 714 019 736</a></div>
-                            <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:onyangocelestino@gmail.com">onyangocelestino@gmail.com</a></div>
-                            <div class="contact-item"><i class="fas fa-map-pin"></i> Nairobi, Kenya</div>
-                            <div class="contact-item"><i class="fab fa-linkedin"></i> <a href="#">linkedin.com/in/celestino-otieno</a></div>
-                            <div class="contact-item"><i class="fab fa-github"></i> <a href="#">github.com/CELESTINO-UX</a></div>
+                        <div class="contact-line">
+                            <span><i class="fas fa-phone-alt"></i> +254 714 019 736</span>
+                            <span><i class="fas fa-envelope"></i> onyangocelestino@gmail.com</span>
+                            <span><i class="fas fa-map-pin"></i> Nairobi, Kenya</span>
+                            <span><i class="fab fa-linkedin"></i> linkedin.com/in/celestino-otieno</span>
                         </div>
 
-                        <!-- Summary -->
-                        <div class="section">
-                            <h4>Professional Summary</h4>
-                            <p class="summary-text">
-                                Accomplished Information Professional with 3+ years of experience in library management, ICT systems, and records administration. <strong>Expert in Koha ILS</strong> — implemented, configured, and managed circulation, cataloguing, and reporting at Kenya National Library Service and Lukenya British Curriculum School. Proven track record of digital transformation, ISO 15489 records management, and staff training. Recognized for measurable impact: <strong>60% reduction in misfiling, 45% growth in ICT club membership, and 25% improvement in research retrieval times.</strong>
-                            </p>
+                        <div class="date-line" id="letterDate"></div>
+
+                        <div class="recipient">
+                            <strong>The Hiring Committee</strong><br>
+                            Oshwal College<br>
+                            Nairobi, Kenya
                         </div>
 
-                        <!-- Skills -->
-                        <div class="section">
-                            <h4>Skills</h4>
-                            <div class="skill-item"><i class="fas fa-circle"></i> Koha ILS (advanced)</div>
-                            <div class="skill-item"><i class="fas fa-circle"></i> MARC21 · AACR2 · RDA · DDC · LCC</div>
-                            <div class="skill-item"><i class="fas fa-circle"></i> MySQL · SQLite · EDMS · MARC XML</div>
-                            <div class="skill-item"><i class="fas fa-circle"></i> Z39.50 · ISO 15489 · Cybersecurity</div>
-                            <div class="skill-item"><i class="fas fa-circle"></i> Power BI · Data Analysis</div>
-                            <div class="skill-item"><i class="fas fa-circle"></i> Collection Development</div>
-                            <div class="skill-item"><i class="fas fa-circle"></i> Digital Resource Management</div>
-                            <div class="skill-item"><i class="fas fa-circle"></i> Information Literacy &amp; Training</div>
-                            <div class="skill-item"><i class="fas fa-circle"></i> Records Management &amp; Archiving</div>
-                            <div class="skill-item"><i class="fas fa-circle"></i> Curriculum Support &amp; ICT Education</div>
-                        </div>
-                    </div>
-
-                    <!-- RIGHT COLUMN -->
-                    <div class="resume-right">
-                        <!-- Work History -->
-                        <div class="section-heading">Work History</div>
-
-                        <div class="job">
-                            <div class="job-header">
-                                <span class="job-title">School Librarian &amp; ICT Educator</span>
-                                <span class="job-date">Aug 2024 – Present</span>
-                            </div>
-                            <span class="job-org">Lukenya British Curriculum School, Machakos</span>
-                            <ul>
-                                <li>Manage full records lifecycle: creation, classification, retention scheduling, and secure disposal of institutional records.</li>
-                                <li>Implement electronic document management system (EDMS) for student records, staff files, and administrative archives.</li>
-                                <li><strong>Oversee library operations using Koha ILS</strong> for circulation, cataloguing, and reporting; maintain hybrid collections.</li>
-                                <li>Provide tier-2/3 technical support for 200+ users across hardware, network, and library systems.</li>
-                                <li>ICT Club Leader: grew membership by 45% within one academic year through coding workshops and annual tech fair.</li>
-                                <li>Deliver Cambridge ICT and Computing curricula to A-Level and O-Level students with practical lab sessions.</li>
-                                <li><strong>Achievements:</strong> Reduced misfiling by 60% via structured classification; digitized 5+ years of student academic records.</li>
-                            </ul>
+                        <div class="subject-line">
+                            RE: APPLICATION FOR THE POSITION OF LIBRARIAN
                         </div>
 
-                        <div class="job">
-                            <div class="job-header">
-                                <span class="job-title">System Librarian</span>
-                                <span class="job-date">May 2024 – Aug 2024</span>
-                            </div>
-                            <span class="job-org">Kenya National Library Service, Nakuru</span>
-                            <ul>
-                                <li><strong>Managed and optimized Koha ILS</strong> — configured circulation rules, catalogued with MARC21 and DDC, and generated analytical reports for library management.</li>
-                                <li>Assisted in records inventory and archival management for historical government publications.</li>
-                                <li>Provided end-user support and IT orientation; delivered hands-on training in MS Office suite and digital literacy.</li>
-                                <li>Designed and delivered accessible ICT programs for persons with disabilities, empowering diverse learners.</li>
-                                <li><strong>Achievements:</strong> Trained 50+ staff and community members; redesigned finding aids reducing research time by 25%.</li>
-                            </ul>
-                        </div>
+                        <p>Dear Hiring Committee,</p>
 
-                        <div class="job">
-                            <div class="job-header">
-                                <span class="job-title">Assistant Librarian Intern</span>
-                                <span class="job-date">May 2023 – Aug 2023</span>
-                            </div>
-                            <span class="job-org">Meru Law Courts, Meru</span>
-                            <ul>
-                                <li><strong>Catalogued new legal publications using Koha ILS</strong>; ensured accurate shelving and accessibility.</li>
-                                <li>Organized, classified, and secured court case files, legal documents, and archival materials in compliance with judicial standards.</li>
-                                <li>Supported digitization of legal documents and developed a searchable electronic index, improving retrieval efficiency by 30%.</li>
-                                <li>Provided reference services to judges, magistrates, prosecutors, and legal researchers.</li>
-                                <li><strong>Key Achievement:</strong> Digitized and catalogued over 500 historical court case files, reducing retrieval time and enhancing access for legal professionals.</li>
-                            </ul>
-                        </div>
+                        <p>
+                            I am writing to express my enthusiastic interest in the Librarian position at Oshwal College, as advertised in your recent vacancy announcement. With a Bachelor of Science in Information Science and over three years of hands-on experience in academic and special library environments, I am confident that my skills and qualifications align perfectly with your requirements, particularly your need for a candidate proficient in the <strong>Koha Library Management System</strong>.
+                        </p>
 
-                        <!-- Education -->
-                        <div class="section-heading">Education</div>
+                        <p>
+                            Your vacancy specifies the need for a Librarian with a Diploma or Bachelor’s Degree in Library &amp; Information Science and proficiency in Koha. My academic background and professional experience directly meet these criteria. I have extensive, practical expertise in <strong>Koha ILS administration</strong>, having managed, optimized, and configured the system at both Kenya National Library Service and Lukenya British Curriculum School. My responsibilities included configuring circulation rules, cataloguing with MARC21 and DDC, and generating analytical reports to support library management and data-driven decision-making.
+                        </p>
 
-                        <div class="edu-entry">
-                            <div class="edu-title">BSc Information Science</div>
-                            <div class="edu-meta">Meru University of Science &amp; Technology · Nov 2020 – Oct 2024</div>
-                            <ul style="list-style: none; padding-left: 1.2rem; margin-top: 0.1rem; font-size: 0.83rem; line-height: 1.5; color: #1e2e3c; position: relative;">
-                                <li style="position: relative; padding-left: 1.2rem; margin-bottom: 0.2rem;">
-                                    <span style="position: absolute; left: 0.1rem; color: #2563eb; font-weight: 700;">•</span>
-                                    Presented research on <em>"Impact of Google Search Algorithm in Students' Decision-Making and Information Retrieval"</em>
-                                </li>
-                            </ul>
-                        </div>
+                        <p>
+                            In my current role as School Librarian &amp; ICT Educator at Lukenya British Curriculum School, I oversee full library operations using Koha ILS, manage the complete records lifecycle, and provide technical support for over 200 users. Previously, as a System Librarian at Kenya National Library Service, I trained over 50 staff and community members, redesigned finding aids that reduced research time by 25%, and assisted in archival management for historical government publications. These experiences have honed my ability to manage both traditional and digital collections effectively.
+                        </p>
 
-                        <div class="edu-entry">
-                            <div class="edu-title">Kenya Certificate of Secondary Education</div>
-                            <div class="edu-meta">Nyarach Mixed Day Secondary · Jan 2015 – Nov 2019</div>
-                            <ul style="list-style: none; padding-left: 1.2rem; margin-top: 0.1rem; font-size: 0.83rem; line-height: 1.5; color: #1e2e3c; position: relative;">
-                                <li style="position: relative; padding-left: 1.2rem; margin-bottom: 0.2rem;">
-                                    <span style="position: absolute; left: 0.1rem; color: #2563eb; font-weight: 700;">•</span>
-                                    Achieved mean grade of C+; led a study group that improved class performance by 15%.
-                                </li>
-                            </ul>
-                        </div>
+                        <p>
+                            I am particularly drawn to Oshwal College's reputation as a leading Higher Education Institution and its collaboration with top UK universities. I am eager to bring my commitment to library operations excellence, my technical skills in modern ILS platforms, and my passion for creating inclusive, resource-rich learning environments to your academic community. I am confident I can contribute to the smooth functioning of your library and enhance the research and learning experience for your students and faculty.
+                        </p>
 
-                        <!-- References -->
-                        <div class="section-heading">References</div>
-                        <div class="ref-grid">
-                            <div class="ref-card">
-                                <strong>Silas Otieno</strong><br>
-                                7 Hills International School · Uganda<br>
-                                <i class="fas fa-phone-alt"></i> +254707445341<br>
-                                <i class="fas fa-envelope"></i> silasotienozacjimmy@gmail.com
-                            </div>
-                            <div class="ref-card">
-                                <strong>George Okoth</strong><br>
-                                US Army &amp; Priest<br>
-                                <i class="fas fa-phone-alt"></i> +12017535656<br>
-                                <i class="fas fa-envelope"></i> Geokth@yahoo.com
-                            </div>
-                            <div class="ref-card">
-                                <strong>John Nganga Gitau</strong><br>
-                                Lecturer &amp; Head of Library and Information Science<br>
-                                Meru University of Science and Technology<br>
-                                <i class="fas fa-phone-alt"></i> +254720877605<br>
-                                <i class="fas fa-envelope"></i> jgitau@must.ac.ke
-                            </div>
+                        <p>
+                            Thank you for considering my application. I have attached my resume for your review and would welcome the opportunity to discuss how my skills and experience can benefit Oshwal College. I am available for an interview at your earliest convenience.
+                        </p>
+
+                        <div class="closing">
+                            <p>Yours sincerely,</p>
+                            <p class="signature-name">Celestino Otieno</p>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- ============================================= -->
+            <!-- RESUME DOCUMENT                               -->
+            <!-- ============================================= -->
+            <div>
+                <div class="doc-label">
+                    <i class="fas fa-file-alt"></i>
+                    Resume / Curriculum Vitae
+                    <span class="line"></span>
+                </div>
+                <div class="document" id="resumeDocument">
+                    <div class="resume-section">
+                        <div class="resume-title"><i class="fas fa-briefcase"></i> Curriculum Vitae</div>
+
+                        <div class="resume-grid">
+                            <!-- LEFT COLUMN -->
+                            <div class="resume-left">
+                                <!-- Contact -->
+                                <div class="section">
+                                    <h4>Contact</h4>
+                                    <div class="contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+254714019736">+254 714 019 736</a></div>
+                                    <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:onyangocelestino@gmail.com">onyangocelestino@gmail.com</a></div>
+                                    <div class="contact-item"><i class="fas fa-map-pin"></i> Nairobi, Kenya</div>
+                                    <div class="contact-item"><i class="fab fa-linkedin"></i> <a href="#">linkedin.com/in/celestino-otieno</a></div>
+                                    <div class="contact-item"><i class="fab fa-github"></i> <a href="#">github.com/CELESTINO-UX</a></div>
+                                </div>
+
+                                <!-- Summary -->
+                                <div class="section">
+                                    <h4>Professional Summary</h4>
+                                    <p class="summary-text">
+                                        Accomplished Information Professional with 3+ years of experience in library management, ICT systems, and records administration. <strong>Expert in Koha ILS</strong> — implemented, configured, and managed circulation, cataloguing, and reporting at Kenya National Library Service and Lukenya British Curriculum School. Proven track record of digital transformation, ISO 15489 records management, and staff training. Recognized for measurable impact: <strong>60% reduction in misfiling, 45% growth in ICT club membership, and 25% improvement in research retrieval times.</strong>
+                                    </p>
+                                </div>
+
+                                <!-- Skills -->
+                                <div class="section">
+                                    <h4>Skills</h4>
+                                    <div class="skill-item"><i class="fas fa-circle"></i> Koha ILS (advanced)</div>
+                                    <div class="skill-item"><i class="fas fa-circle"></i> MARC21 · AACR2 · RDA · DDC · LCC</div>
+                                    <div class="skill-item"><i class="fas fa-circle"></i> MySQL · SQLite · EDMS · MARC XML</div>
+                                    <div class="skill-item"><i class="fas fa-circle"></i> Z39.50 · ISO 15489 · Cybersecurity</div>
+                                    <div class="skill-item"><i class="fas fa-circle"></i> Power BI · Data Analysis</div>
+                                    <div class="skill-item"><i class="fas fa-circle"></i> Collection Development</div>
+                                    <div class="skill-item"><i class="fas fa-circle"></i> Digital Resource Management</div>
+                                    <div class="skill-item"><i class="fas fa-circle"></i> Information Literacy &amp; Training</div>
+                                    <div class="skill-item"><i class="fas fa-circle"></i> Records Management &amp; Archiving</div>
+                                    <div class="skill-item"><i class="fas fa-circle"></i> Curriculum Support &amp; ICT Education</div>
+                                </div>
+                            </div>
+
+                            <!-- RIGHT COLUMN -->
+                            <div class="resume-right">
+                                <!-- Work History -->
+                                <div class="section-heading">Work History</div>
+
+                                <div class="job">
+                                    <div class="job-header">
+                                        <span class="job-title">School Librarian &amp; ICT Educator</span>
+                                        <span class="job-date">Aug 2024 – Present</span>
+                                    </div>
+                                    <span class="job-org">Lukenya British Curriculum School, Machakos</span>
+                                    <ul>
+                                        <li>Manage full records lifecycle: creation, classification, retention scheduling, and secure disposal of institutional records.</li>
+                                        <li>Implement electronic document management system (EDMS) for student records, staff files, and administrative archives.</li>
+                                        <li><strong>Oversee library operations using Koha ILS</strong> for circulation, cataloguing, and reporting; maintain hybrid collections.</li>
+                                        <li>Provide tier-2/3 technical support for 200+ users across hardware, network, and library systems.</li>
+                                        <li>ICT Club Leader: grew membership by 45% within one academic year through coding workshops and annual tech fair.</li>
+                                        <li>Deliver Cambridge ICT and Computing curricula to A-Level and O-Level students with practical lab sessions.</li>
+                                        <li><strong>Achievements:</strong> Reduced misfiling by 60% via structured classification; digitized 5+ years of student academic records.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="job">
+                                    <div class="job-header">
+                                        <span class="job-title">System Librarian</span>
+                                        <span class="job-date">May 2024 – Aug 2024</span>
+                                    </div>
+                                    <span class="job-org">Kenya National Library Service, Nakuru</span>
+                                    <ul>
+                                        <li><strong>Managed and optimized Koha ILS</strong> — configured circulation rules, catalogued with MARC21 and DDC, and generated analytical reports for library management.</li>
+                                        <li>Assisted in records inventory and archival management for historical government publications.</li>
+                                        <li>Provided end-user support and IT orientation; delivered hands-on training in MS Office suite and digital literacy.</li>
+                                        <li>Designed and delivered accessible ICT programs for persons with disabilities, empowering diverse learners.</li>
+                                        <li><strong>Achievements:</strong> Trained 50+ staff and community members; redesigned finding aids reducing research time by 25%.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="job">
+                                    <div class="job-header">
+                                        <span class="job-title">Assistant Librarian Intern</span>
+                                        <span class="job-date">May 2023 – Aug 2023</span>
+                                    </div>
+                                    <span class="job-org">Meru Law Courts, Meru</span>
+                                    <ul>
+                                        <li><strong>Catalogued new legal publications using Koha ILS</strong>; ensured accurate shelving and accessibility.</li>
+                                        <li>Organized, classified, and secured court case files, legal documents, and archival materials in compliance with judicial standards.</li>
+                                        <li>Supported digitization of legal documents and developed a searchable electronic index, improving retrieval efficiency by 30%.</li>
+                                        <li>Provided reference services to judges, magistrates, prosecutors, and legal researchers.</li>
+                                        <li><strong>Key Achievement:</strong> Digitized and catalogued over 500 historical court case files, reducing retrieval time and enhancing access for legal professionals.</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Education -->
+                                <div class="section-heading">Education</div>
+
+                                <div class="edu-entry">
+                                    <div class="edu-title">BSc Information Science</div>
+                                    <div class="edu-meta">Meru University of Science &amp; Technology · Nov 2020 – Oct 2024</div>
+                                    <ul style="list-style: none; padding-left: 1.2rem; margin-top: 0.1rem; font-size: 0.83rem; line-height: 1.5; color: #1e2e3c; position: relative;">
+                                        <li style="position: relative; padding-left: 1.2rem; margin-bottom: 0.2rem;">
+                                            <span style="position: absolute; left: 0.1rem; color: #2563eb; font-weight: 700;">•</span>
+                                            Presented research on <em>"Impact of Google Search Algorithm in Students' Decision-Making and Information Retrieval"</em>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="edu-entry">
+                                    <div class="edu-title">Kenya Certificate of Secondary Education</div>
+                                    <div class="edu-meta">Nyarach Mixed Day Secondary · Jan 2015 – Nov 2019</div>
+                                    <ul style="list-style: none; padding-left: 1.2rem; margin-top: 0.1rem; font-size: 0.83rem; line-height: 1.5; color: #1e2e3c; position: relative;">
+                                        <li style="position: relative; padding-left: 1.2rem; margin-bottom: 0.2rem;">
+                                            <span style="position: absolute; left: 0.1rem; color: #2563eb; font-weight: 700;">•</span>
+                                            Achieved mean grade of C+; led a study group that improved class performance by 15%.
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <!-- References -->
+                                <div class="section-heading">References</div>
+                                <div class="ref-grid">
+                                    <div class="ref-card">
+                                        <strong>Silas Otieno</strong><br>
+                                        7 Hills International School · Uganda<br>
+                                        <i class="fas fa-phone-alt"></i> +254707445341<br>
+                                        <i class="fas fa-envelope"></i> silasotienozacjimmy@gmail.com
+                                    </div>
+                                    <div class="ref-card">
+                                        <strong>George Okoth</strong><br>
+                                        US Army &amp; Priest<br>
+                                        <i class="fas fa-phone-alt"></i> +12017535656<br>
+                                        <i class="fas fa-envelope"></i> Geokth@yahoo.com
+                                    </div>
+                                    <div class="ref-card">
+                                        <strong>John Nganga Gitau</strong><br>
+                                        Lecturer &amp; Head of Library and Information Science<br>
+                                        Meru University of Science and Technology<br>
+                                        <i class="fas fa-phone-alt"></i> +254720877605<br>
+                                        <i class="fas fa-envelope"></i> jgitau@must.ac.ke
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <!-- Footer -->
         <div class="footer-note">
-            <i class="fas fa-file-pdf"></i> Click the download button to save this application as a PDF.
+            <i class="fas fa-file-pdf"></i> Use the buttons above to download the Cover Letter and Resume as separate PDF files.
         </div>
     </div>
 
     <script>
         (function() {
-            // Set today's date in the letter
-            const dateEl = document.getElementById('letterDate');
-            if (dateEl) {
-                const today = new Date();
-                const options = { year: 'numeric', month: 'long', day: 'numeric' };
-                dateEl.textContent = today.toLocaleDateString('en-KE', options);
+            // Set today's date in the cover letter
+            function setLetterDate(scope) {
+                const dateEl = scope.querySelector('#letterDate') || document.getElementById('letterDate');
+                if (dateEl) {
+                    const today = new Date();
+                    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                    dateEl.textContent = today.toLocaleDateString('en-KE', options);
+                }
             }
 
+            // Set the date on page load
+            setLetterDate(document);
+
             const overlay = document.getElementById('loadingOverlay');
-            const downloadBtn = document.getElementById('downloadBtn');
+            const downloadCoverBtn = document.getElementById('downloadCoverBtn');
+            const downloadResumeBtn = document.getElementById('downloadResumeBtn');
 
             function showLoading() {
                 overlay.style.display = 'flex';
@@ -814,26 +885,11 @@
                 overlay.style.display = 'none';
             }
 
-            downloadBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                showLoading();
-
-                // Clone the application document to avoid modifying the live view
-                const source = document.getElementById('applicationDocument');
-                const clone = source.cloneNode(true);
-
-                // Ensure the date inside the clone is correct
-                const clonedDate = clone.querySelector('#letterDate');
-                if (clonedDate) {
-                    const today = new Date();
-                    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-                    clonedDate.textContent = today.toLocaleDateString('en-KE', options);
-                }
-
-                // PDF options
-                const opt = {
+            // Base PDF options
+            function baseOptions(filename) {
+                return {
                     margin: [0.5, 0.5, 0.5, 0.5],
-                    filename: 'Celestino_Otieno_Librarian_Application_Oshwal_College.pdf',
+                    filename: filename,
                     image: { type: 'jpeg', quality: 0.98 },
                     html2canvas: {
                         scale: 2,
@@ -848,18 +904,53 @@
                         format: 'a4',
                         orientation: 'portrait'
                     },
-                    pagebreak: {
-                        mode: ['css', 'legacy'],
-                        before: '.resume-section'
-                    }
+                    pagebreak: { mode: ['css', 'legacy'] }
                 };
+            }
+
+            // ---------- DOWNLOAD COVER LETTER ----------
+            downloadCoverBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                showLoading();
+
+                const source = document.getElementById('coverLetterDocument');
+                const clone = source.cloneNode(true);
+
+                // Ensure date is set in clone
+                const clonedDate = clone.querySelector('#letterDate');
+                if (clonedDate) {
+                    const today = new Date();
+                    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                    clonedDate.textContent = today.toLocaleDateString('en-KE', options);
+                }
+
+                const opt = baseOptions('Celestino_Otieno_Cover_Letter_Oshwal_College.pdf');
 
                 html2pdf().set(opt).from(clone).save().then(() => {
                     hideLoading();
                 }).catch((err) => {
-                    console.error('PDF generation error:', err);
+                    console.error('Cover letter PDF error:', err);
                     hideLoading();
-                    alert('There was an error generating the PDF. Please try again.');
+                    alert('There was an error generating the Cover Letter PDF. Please try again.');
+                });
+            });
+
+            // ---------- DOWNLOAD RESUME ----------
+            downloadResumeBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                showLoading();
+
+                const source = document.getElementById('resumeDocument');
+                const clone = source.cloneNode(true);
+
+                const opt = baseOptions('Celestino_Otieno_Resume_Oshwal_College.pdf');
+
+                html2pdf().set(opt).from(clone).save().then(() => {
+                    hideLoading();
+                }).catch((err) => {
+                    console.error('Resume PDF error:', err);
+                    hideLoading();
+                    alert('There was an error generating the Resume PDF. Please try again.');
                 });
             });
         })();
