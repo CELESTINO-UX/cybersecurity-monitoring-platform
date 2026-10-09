@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Celestino Otieno · Resume</title>
+    <title>Celestino Otieno · Dashboard</title>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- html2pdf for PDF download -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Google Fonts (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -25,9 +27,212 @@
             min-height: 100vh;
         }
 
-        /* --- Download toolbar --- */
+        /* ===== LOGGED-IN BANNER ===== */
+        .login-banner {
+            max-width: 1100px;
+            width: 100%;
+            background: #1f3a6d;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 20px rgba(31, 58, 109, 0.2);
+            border: 1px solid #2a4d8f;
+        }
+
+        .login-banner .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .login-banner .user-avatar {
+            width: 36px;
+            height: 36px;
+            background: #8fb4e8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #1f3a6d;
+            font-size: 0.9rem;
+        }
+
+        .login-banner .user-info span {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .login-banner .user-info strong {
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .login-banner .badge {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .login-banner .badge i {
+            color: #8fb4e8;
+        }
+
+        /* ===== PAGE HEADER ===== */
+        .page-header {
+            max-width: 1100px;
+            width: 100%;
+            margin-bottom: 1.8rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #0f2a42;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .page-header h1 i {
+            color: #2563eb;
+            margin-right: 10px;
+        }
+
+        .page-header p {
+            font-size: 0.98rem;
+            color: #3f5568;
+            margin-top: 0.4rem;
+            max-width: 720px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== WORK IN PROGRESS NOTIFICATION ===== */
+        .wip-notification {
+            max-width: 1100px;
+            width: 100%;
+            background: #fff8e5;
+            border: 1px solid #f0d58c;
+            border-left: 6px solid #e6a817;
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 4px 12px rgba(230, 168, 23, 0.08);
+        }
+
+        .wip-notification i {
+            font-size: 1.6rem;
+            color: #e6a817;
+        }
+
+        .wip-notification .wip-text {
+            flex: 1;
+            font-size: 0.92rem;
+            color: #5a4a1f;
+            line-height: 1.5;
+        }
+
+        .wip-notification .wip-text strong {
+            color: #b07d0a;
+        }
+
+        .wip-notification .wip-badge {
+            background: #e6a817;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 0.25rem 0.9rem;
+            border-radius: 40px;
+            white-space: nowrap;
+        }
+
+        /* ===== MAIN TABS (Resume / Article) ===== */
+        .main-tabs {
+            max-width: 1100px;
+            width: 100%;
+            display: flex;
+            gap: 0.6rem;
+            margin-bottom: 1.2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .main-tab-btn {
+            background: white;
+            border: 1.5px solid #c9d9ea;
+            color: #1f3a6d;
+            padding: 0.75rem 1.6rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            font-family: inherit;
+            box-shadow: 0 2px 8px rgba(31, 58, 109, 0.06);
+        }
+
+        .main-tab-btn i {
+            font-size: 1rem;
+            color: #2563eb;
+        }
+
+        .main-tab-btn:hover {
+            background: #f0f7ff;
+            border-color: #2563eb;
+        }
+
+        .main-tab-btn.active {
+            background: #1f3a6d;
+            border-color: #1f3a6d;
+            color: white;
+            box-shadow: 0 6px 18px rgba(31, 58, 109, 0.25);
+        }
+
+        .main-tab-btn.active i {
+            color: #8fb4e8;
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            display: none;
+            width: 100%;
+            max-width: 1100px;
+            animation: fade 0.25s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fade {
+            from { opacity: 0.4; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== RESUME TOOLBAR ===== */
         .toolbar {
-            max-width: 900px;
             width: 100%;
             display: flex;
             flex-wrap: wrap;
@@ -79,9 +284,8 @@
             transform: scale(0.97);
         }
 
-        /* --- Resume Container (the template layout) --- */
+        /* ===== RESUME TEMPLATE ===== */
         .resume-template {
-            max-width: 900px;
             width: 100%;
             background: white;
             border-radius: 8px;
@@ -92,7 +296,6 @@
             flex-wrap: wrap;
         }
 
-        /* ============ LEFT SIDEBAR (navy) ============ */
         .resume-sidebar {
             width: 34%;
             background: #1f3a6d;
@@ -102,7 +305,6 @@
             flex-direction: column;
         }
 
-        /* Photo / Initials block */
         .sidebar-photo {
             display: flex;
             justify-content: center;
@@ -188,7 +390,6 @@
             text-align: center;
         }
 
-        /* Languages */
         .lang-item {
             margin-bottom: 0.6rem;
         }
@@ -206,14 +407,12 @@
             font-style: italic;
         }
 
-        /* ============ RIGHT MAIN CONTENT ============ */
         .resume-main {
             width: 66%;
             padding: 2.2rem 2.2rem 2rem 2.2rem;
             background: #ffffff;
         }
 
-        /* Header */
         .main-header {
             margin-bottom: 1.6rem;
         }
@@ -234,7 +433,6 @@
             letter-spacing: 0.02em;
         }
 
-        /* Section headings */
         .main-section {
             margin-bottom: 1.5rem;
         }
@@ -250,7 +448,6 @@
             border-bottom: 2px solid #1f3a6d;
         }
 
-        /* Summary */
         .summary-text {
             font-size: 0.87rem;
             line-height: 1.65;
@@ -262,7 +459,6 @@
             color: #1a2b3c;
         }
 
-        /* Experience entries */
         .exp-entry {
             margin-bottom: 1.2rem;
             page-break-inside: avoid;
@@ -326,7 +522,6 @@
             color: #1a2b3c;
         }
 
-        /* Education */
         .edu-entry {
             margin-bottom: 1rem;
             page-break-inside: avoid;
@@ -363,7 +558,6 @@
             font-weight: 700;
         }
 
-        /* References (compact, 2-column) */
         .ref-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -396,7 +590,6 @@
             font-size: 0.75rem;
         }
 
-        /* Footer note */
         .footer-note {
             text-align: center;
             font-size: 0.78rem;
@@ -406,7 +599,257 @@
             border-top: 1px solid #dce4ed;
         }
 
-        /* Loading overlay */
+        /* ===== ARTICLE LAYOUT ===== */
+        .article-toolbar {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+            padding: 0 0.25rem;
+        }
+
+        .article-toolbar h2 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #1a2b3c;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .article-toolbar h2 i {
+            color: #2563eb;
+        }
+
+        .article-container {
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+            border: 1px solid #d9e2ec;
+            overflow: hidden;
+        }
+
+        .article-header {
+            background: linear-gradient(135deg, #1f3a6d 0%, #2a4d8f 100%);
+            color: white;
+            padding: 2.2rem 2.4rem 2rem;
+            border-bottom: 4px solid #2563eb;
+        }
+
+        .article-header .article-kicker {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            font-weight: 700;
+            color: #8fb4e8;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .article-header h1 {
+            font-size: 2.1rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 0.6rem;
+            color: #ffffff;
+        }
+
+        .article-header .article-subtitle {
+            font-size: 0.95rem;
+            color: #c5d9f0;
+            line-height: 1.6;
+            max-width: 780px;
+            margin-bottom: 1.6rem;
+        }
+
+        .article-author-block {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1.2rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 14px;
+            padding: 1.1rem 1.3rem;
+        }
+
+        .article-author-avatar {
+            width: 70px;
+            height: 70px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: #1f3a6d;
+            flex-shrink: 0;
+            box-shadow: 0 5px 14px rgba(0, 0, 0, 0.2);
+        }
+
+        .article-author-details {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .article-author-details .author-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            font-weight: 700;
+            color: #8fb4e8;
+            margin-bottom: 0.15rem;
+        }
+
+        .article-author-details h3 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 0.15rem;
+        }
+
+        .article-author-details .author-role {
+            font-size: 0.85rem;
+            color: #c5d9f0;
+            font-weight: 500;
+            margin-bottom: 0.35rem;
+        }
+
+        .article-author-details .author-meta {
+            font-size: 0.78rem;
+            color: #a9c3e2;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.2rem;
+        }
+
+        .article-author-details .author-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .article-author-details .author-meta i {
+            color: #8fb4e8;
+            font-size: 0.72rem;
+        }
+
+        .article-body {
+            padding: 2.2rem 2.4rem 2.4rem;
+        }
+
+        .article-body h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #0f2a42;
+            margin: 2rem 0 0.6rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 2px solid #e3edf7;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .article-body h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .article-body h2 i {
+            color: #2563eb;
+            font-size: 1.2rem;
+        }
+
+        .article-body h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #1f3a6d;
+            margin: 1.4rem 0 0.5rem;
+        }
+
+        .article-body p {
+            font-size: 0.93rem;
+            line-height: 1.78;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .article-body ul {
+            list-style: none;
+            padding-left: 0.2rem;
+            margin: 0.6rem 0 1.2rem;
+        }
+
+        .article-body ul li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.91rem;
+            line-height: 1.65;
+            color: #2c3e50;
+        }
+
+        .article-body ul li::before {
+            content: "•";
+            position: absolute;
+            left: 0.2rem;
+            color: #2563eb;
+            font-weight: 800;
+            font-size: 1.05rem;
+        }
+
+        .article-body ul li strong {
+            color: #0f2a42;
+        }
+
+        .article-body blockquote {
+            background: #f0f7ff;
+            border-left: 4px solid #2563eb;
+            padding: 1rem 1.3rem;
+            border-radius: 8px;
+            margin: 1.2rem 0 1.4rem;
+            font-size: 0.92rem;
+            line-height: 1.7;
+            color: #1e3a5f;
+            font-style: italic;
+        }
+
+        .article-body blockquote strong {
+            color: #0f2a42;
+            font-style: normal;
+        }
+
+        .article-footer {
+            background: #f7fafd;
+            border-top: 1px solid #d9e2ec;
+            padding: 1.6rem 2.4rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .article-footer .article-citation {
+            font-size: 0.8rem;
+            color: #5f738a;
+            line-height: 1.6;
+            max-width: 600px;
+        }
+
+        .article-footer .article-citation strong {
+            color: #1f3a6d;
+        }
+
+        /* ===== LOADING OVERLAY ===== */
         .loading-overlay {
             display: none;
             position: fixed;
@@ -438,7 +881,7 @@
             font-weight: 500;
         }
 
-        /* Responsive */
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 750px) {
             .resume-template {
                 flex-direction: column;
@@ -462,7 +905,8 @@
                 grid-template-columns: 1fr;
             }
 
-            .toolbar {
+            .toolbar,
+            .article-toolbar {
                 flex-direction: column;
                 align-items: stretch;
                 text-align: center;
@@ -470,6 +914,58 @@
 
             .btn-download {
                 justify-content: center;
+            }
+
+            .page-header h1 {
+                font-size: 1.7rem;
+            }
+
+            .article-header {
+                padding: 1.6rem 1.4rem 1.5rem;
+            }
+
+            .article-header h1 {
+                font-size: 1.55rem;
+            }
+
+            .article-body {
+                padding: 1.6rem 1.4rem 1.8rem;
+            }
+
+            .article-footer {
+                padding: 1.3rem 1.4rem;
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+
+            .article-author-block {
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .article-author-avatar {
+                width: 58px;
+                height: 58px;
+                font-size: 1.4rem;
+            }
+
+            .login-banner {
+                flex-direction: column;
+                gap: 0.6rem;
+                align-items: flex-start;
+                padding: 0.8rem 1.2rem;
+                border-radius: 20px;
+            }
+
+            .wip-notification {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0.9rem 1.2rem;
+            }
+
+            .wip-notification .wip-badge {
+                align-self: flex-start;
             }
         }
 
@@ -488,9 +984,14 @@
             .exp-date {
                 margin-top: 0.05rem;
             }
+
+            .article-author-block {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
 
-        /* Print styles */
+        /* ===== PRINT ===== */
         @media print {
             body {
                 background: white;
@@ -500,8 +1001,17 @@
 
             .toolbar,
             .footer-note,
-            .loading-overlay {
+            .loading-overlay,
+            .main-tabs,
+            .page-header,
+            .article-toolbar,
+            .login-banner,
+            .wip-notification {
                 display: none !important;
+            }
+
+            .section {
+                display: block !important;
             }
 
             .resume-template {
@@ -524,6 +1034,18 @@
                 page-break-inside: avoid;
                 break-inside: avoid;
             }
+
+            .article-container {
+                box-shadow: none;
+                border-radius: 0;
+                border: none;
+            }
+
+            .article-header {
+                background: #1f3a6d !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
         }
     </style>
 </head>
@@ -537,224 +1059,699 @@
         </div>
     </div>
 
-    <!-- Toolbar -->
-    <div class="toolbar">
-        <h1><i class="fas fa-file-alt"></i> Celestino Otieno · Resume</h1>
-        <button class="btn-download" id="downloadResumeBtn">
-            <i class="fas fa-file-pdf"></i> Download Resume (PDF)
+    <!-- Logged-in banner -->
+    <div class="login-banner">
+        <div class="user-info">
+            <div class="user-avatar">CO</div>
+            <span>Welcome back, <strong>Celestino</strong></span>
+        </div>
+        <div class="badge">
+            <i class="fas fa-check-circle"></i> Signed in with Google
+        </div>
+    </div>
+
+    <!-- Page header -->
+    <div class="page-header">
+        <h1><i class="fas fa-book-open"></i> Celestino Otieno</h1>
+        <p>Professional Resume &amp; Article on the Librarian Profession</p>
+    </div>
+
+    <!-- ===== WORK IN PROGRESS NOTIFICATION ===== -->
+    <div class="wip-notification">
+        <i class="fas fa-hard-hat"></i>
+        <div class="wip-text">
+            <strong><i class="fas fa-tools"></i> Work in Progress:</strong> 
+            I'm actively building out my full portfolio. Some sections may be incomplete 
+            or under construction. Thank you for your patience — more content coming soon!
+        </div>
+        <span class="wip-badge"><i class="fas fa-clock"></i> Updating</span>
+    </div>
+
+    <!-- Main tabs: Resume / Article -->
+    <div class="main-tabs">
+        <button class="main-tab-btn active" data-main-tab="section-resume">
+            <i class="fas fa-file-alt"></i> My Resume
+        </button>
+        <button class="main-tab-btn" data-main-tab="section-librarian">
+            <i class="fas fa-newspaper"></i> About a Librarian (Article)
         </button>
     </div>
 
-    <!-- ========== RESUME TEMPLATE ========== -->
-    <div class="resume-template" id="resumeDocument">
+    <!-- =================================================== -->
+    <!-- ================= SECTION: RESUME ================= -->
+    <!-- =================================================== -->
+    <div class="section active" id="section-resume">
 
-        <!-- ============ LEFT SIDEBAR ============ -->
-        <div class="resume-sidebar">
+        <!-- Toolbar -->
+        <div class="toolbar">
+            <h1><i class="fas fa-file-alt"></i> Celestino Otieno · Resume</h1>
+            <button class="btn-download" id="downloadResumeBtn">
+                <i class="fas fa-file-pdf"></i> Download Resume (PDF)
+            </button>
+        </div>
 
-            <!-- Photo / Initials -->
-            <div class="sidebar-photo">
-                <div class="photo-box">CO</div>
+        <!-- Resume template -->
+        <div class="resume-template" id="resumeDocument">
+
+            <!-- LEFT SIDEBAR -->
+            <div class="resume-sidebar">
+
+                <div class="sidebar-photo">
+                    <div class="photo-box">CO</div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3>Contact</h3>
+                    <div class="sidebar-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:onyangocelestino@gmail.com">onyangocelestino@gmail.com</a>
+                    </div>
+                    <div class="sidebar-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <a href="tel:+254714019736">+254 714 019 736</a>
+                    </div>
+                    <div class="sidebar-item">
+                        <i class="fas fa-map-pin"></i>
+                        <span>Nairobi, Kenya</span>
+                    </div>
+                    <div class="sidebar-item">
+                        <i class="fab fa-linkedin"></i>
+                        <a href="#">linkedin.com/in/celestino-otieno</a>
+                    </div>
+                    <div class="sidebar-item">
+                        <i class="fab fa-github"></i>
+                        <a href="#">github.com/CELESTINO-UX</a>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3>Skills</h3>
+                    <div class="sidebar-skill"><i class="fas fa-circle"></i> Koha ILS (advanced)</div>
+                    <div class="sidebar-skill"><i class="fas fa-circle"></i> Snapplify (e-library platform)</div>
+                    <div class="sidebar-skill"><i class="fas fa-circle"></i> MARC21 · AACR2 · RDA · DDC · LCC</div>
+                    <div class="sidebar-skill"><i class="fas fa-circle"></i> MySQL · SQLite · EDMS · MARC XML</div>
+                    <div class="sidebar-skill"><i class="fas fa-circle"></i> Z39.50 · ISO 15489 · Cybersecurity</div>
+                    <div class="sidebar-skill"><i class="fas fa-circle"></i> Power BI · Data Analysis</div>
+                    <div class="sidebar-skill"><i class="fas fa-circle"></i> Collection Development &amp; Acquisitions</div>
+                    <div class="sidebar-skill"><i class="fas fa-circle"></i> Indexing &amp; Abstracting</div>
+                    <div class="sidebar-skill"><i class="fas fa-circle"></i> Records Management &amp; Archiving</div>
+                    <div class="sidebar-skill"><i class="fas fa-circle"></i> Stocktaking &amp; Inventory Control</div>
+                    <div class="sidebar-skill"><i class="fas fa-circle"></i> Report Writing &amp; Correspondence</div>
+                    <div class="sidebar-skill"><i class="fas fa-circle"></i> Computer Proficiency (MS Office, ILS, EDMS)</div>
+                    <div class="sidebar-skill"><i class="fas fa-circle"></i> Information Literacy &amp; Training</div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3>Languages</h3>
+                    <div class="lang-item">
+                        <span class="lang-name">English</span>
+                        <span class="lang-level">Fluent</span>
+                    </div>
+                    <div class="lang-item">
+                        <span class="lang-name">Kiswahili</span>
+                        <span class="lang-level">Native</span>
+                    </div>
+                </div>
+
+                <!-- CERTIFICATIONS -->
+                <div class="sidebar-section">
+                    <h3>Certifications</h3>
+                    <div class="sidebar-skill"><i class="fas fa-circle"></i> Advanced Cybersecurity – Great Learning (2025)</div>
+                    <div class="sidebar-skill"><i class="fas fa-circle"></i> Data Visualization with Power BI (2022)</div>
+                    <div class="sidebar-skill"><i class="fas fa-circle"></i> Cyber Forensics (2025)</div>
+                    <div class="sidebar-skill"><i class="fas fa-circle"></i> Infection Prevention &amp; Control (2026)</div>
+                    <div class="sidebar-skill"><i class="fas fa-circle"></i> ADHD Awareness (2026)</div>
+                    <div class="sidebar-skill"><i class="fas fa-circle"></i> Fire Safety Training (2025)</div>
+                </div>
             </div>
 
-            <!-- Contact -->
-            <div class="sidebar-section">
-                <h3>Contact</h3>
-                <div class="sidebar-item">
-                    <i class="fas fa-envelope"></i>
-                    <a href="mailto:onyangocelestino@gmail.com">onyangocelestino@gmail.com</a>
-                </div>
-                <div class="sidebar-item">
-                    <i class="fas fa-phone-alt"></i>
-                    <a href="tel:+254714019736">+254 714 019 736</a>
-                </div>
-                <div class="sidebar-item">
-                    <i class="fas fa-map-pin"></i>
-                    <span>Nairobi, Kenya</span>
-                </div>
-                <div class="sidebar-item">
-                    <i class="fab fa-linkedin"></i>
-                    <a href="#">linkedin.com/in/celestino-otieno</a>
-                </div>
-                <div class="sidebar-item">
-                    <i class="fab fa-github"></i>
-                    <a href="#">github.com/CELESTINO-UX</a>
-                </div>
-            </div>
+            <!-- RIGHT MAIN CONTENT -->
+            <div class="resume-main">
 
-            <!-- Skills -->
-            <div class="sidebar-section">
-                <h3>Skills</h3>
-                <div class="sidebar-skill"><i class="fas fa-circle"></i> Koha ILS (advanced)</div>
-                <div class="sidebar-skill"><i class="fas fa-circle"></i> MARC21 · AACR2 · RDA · DDC · LCC</div>
-                <div class="sidebar-skill"><i class="fas fa-circle"></i> MySQL · SQLite · EDMS · MARC XML</div>
-                <div class="sidebar-skill"><i class="fas fa-circle"></i> Z39.50 · ISO 15489 · Cybersecurity</div>
-                <div class="sidebar-skill"><i class="fas fa-circle"></i> Power BI · Data Analysis</div>
-                <div class="sidebar-skill"><i class="fas fa-circle"></i> Collection Development</div>
-                <div class="sidebar-skill"><i class="fas fa-circle"></i> Digital Resource Management</div>
-                <div class="sidebar-skill"><i class="fas fa-circle"></i> Information Literacy &amp; Training</div>
-                <div class="sidebar-skill"><i class="fas fa-circle"></i> Records Management &amp; Archiving</div>
-                <div class="sidebar-skill"><i class="fas fa-circle"></i> Curriculum Support &amp; ICT Education</div>
-            </div>
-
-            <!-- Languages -->
-            <div class="sidebar-section">
-                <h3>Languages</h3>
-                <div class="lang-item">
-                    <span class="lang-name">English</span>
-                    <span class="lang-level">Fluent</span>
+                <div class="main-header">
+                    <h1>Celestino Otieno</h1>
+                    <h2>School Librarian &amp; ICT Educator · System Librarian</h2>
                 </div>
-                <div class="lang-item">
-                    <span class="lang-name">Kiswahili</span>
-                    <span class="lang-level">Native</span>
-                </div>
-            </div>
 
-            <!-- Certifications (from your experience) -->
-            <div class="sidebar-section">
-                <h3>Certifications</h3>
-                <div class="sidebar-skill"><i class="fas fa-circle"></i> Koha ILS Administration</div>
-                <div class="sidebar-skill"><i class="fas fa-circle"></i> ISO 15489 Records Management</div>
-                <div class="sidebar-skill"><i class="fas fa-circle"></i> Digital Literacy &amp; ICT Training</div>
+                <div class="main-section">
+                    <h3>Summary</h3>
+                    <p class="summary-text">
+                        Accomplished Information Professional with 3+ years of experience in library management, records administration, and ICT systems. <strong>Expert in Koha ILS</strong> — implemented, configured, and managed circulation, cataloguing, acquisitions, and reporting. Proven skills in <strong>records management, initiating orders for books/journals, indexing &amp; abstracting, handling library correspondence, editing quarterly reports, and stocktaking.</strong> Strong computer proficiency including MS Office, EDMS, and library automation. Recognized for measurable impact: <strong>60% reduction in misfiling, 45% growth in ICT club membership, and 25% improvement in research retrieval times.</strong>
+                    </p>
+                </div>
+
+                <div class="main-section">
+                    <h3>Experience</h3>
+
+                    <div class="exp-entry">
+                        <div class="exp-header">
+                            <span class="exp-title">School Librarian &amp; ICT Educator</span>
+                            <span class="exp-date">Aug 2024 – Present</span>
+                        </div>
+                        <span class="exp-org">Lukenya British Curriculum School | Machakos</span>
+                        <ul>
+                            <li><strong>Manage full records lifecycle:</strong> creation, classification, retention scheduling, and secure disposal of institutional records (ISO 15489).</li>
+                            <li><strong>Initiate orders for new books, journals, and periodicals</strong> — evaluate needs, liaise with suppliers, and process acquisitions using Snapplify.</li>
+                            <li><strong>Index and abstract journal articles</strong> for the school's research repository; maintain accurate metadata for easy retrieval.</li>
+                            <li><strong>Handle library correspondence</strong> — draft emails, letters, and memos regarding subscriptions, donations, and vendor communications.</li>
+                            <li><strong>Edit and compile quarterly reports</strong> for the library section, including usage statistics, acquisitions, and stocktaking summaries.</li>
+                            <li><strong>Undertake stocktaking activities</strong> — conduct annual and periodic inventory of library resources, reconcile records, and report discrepancies.</li>
+                            <li>Oversee library operations using <strong>Snapplify</strong> for e-book management, digital lending, and reporting; maintain hybrid collections.</li>
+                            <li>Provide tier-2/3 technical support for 200+ users across hardware, network, and library systems; strong computer troubleshooting.</li>
+                            <li>ICT Club Leader: grew membership by 45% within one academic year through coding workshops and annual tech fair.</li>
+                            <li>Deliver Cambridge ICT and Computing curricula to A-Level and O-Level students with practical lab sessions.</li>
+                            <li><strong>Achievements:</strong> Reduced misfiling by 60% via structured classification; digitized 5+ years of student academic records.</li>
+                        </ul>
+                    </div>
+
+                    <div class="exp-entry">
+                        <div class="exp-header">
+                            <span class="exp-title">System Librarian</span>
+                            <span class="exp-date">May 2024 – Aug 2024</span>
+                        </div>
+                        <span class="exp-org">Kenya National Library Service | Nakuru</span>
+                        <ul>
+                            <li><strong>Managed and optimized Koha ILS</strong> — configured circulation rules, catalogued with MARC21 and DDC, and generated analytical reports.</li>
+                            <li><strong>Initiated acquisition orders</strong> for new publications; coordinated with procurement and vendors for timely delivery.</li>
+                            <li><strong>Indexed and abstracted</strong> journal articles and government publications for the library's reference database.</li>
+                            <li><strong>Handled library correspondence</strong> — responded to inquiries, prepared subscription renewals, and maintained vendor records.</li>
+                            <li><strong>Compiled quarterly reports</strong> on library usage, acquisitions, and stocktaking; presented to management.</li>
+                            <li><strong>Conducted stocktaking</strong> of library resources, including physical inventory and reconciliation with Koha records.</li>
+                            <li>Assisted in records inventory and archival management for historical government publications.</li>
+                            <li>Provided end-user support and IT orientation; delivered hands-on training in MS Office suite and digital literacy.</li>
+                            <li>Designed and delivered accessible ICT programs for persons with disabilities, empowering diverse learners.</li>
+                            <li><strong>Achievements:</strong> Trained 50+ staff and community members; redesigned finding aids reducing research time by 25%.</li>
+                        </ul>
+                    </div>
+
+                    <div class="exp-entry">
+                        <div class="exp-header">
+                            <span class="exp-title">Assistant Librarian Intern</span>
+                            <span class="exp-date">May 2023 – Aug 2023</span>
+                        </div>
+                        <span class="exp-org">Meru Law Courts | Meru</span>
+                        <ul>
+                            <li><strong>Catalogued new legal publications using Koha ILS</strong>; ensured accurate shelving and accessibility.</li>
+                            <li><strong>Assisted in initiating orders</strong> for legal journals and reports; tracked deliveries and updated records.</li>
+                            <li><strong>Indexed and abstracted</strong> case law and legal articles to support judicial research.</li>
+                            <li><strong>Managed library correspondence</strong> — filed and drafted responses to court inquiries and subscription agents.</li>
+                            <li><strong>Helped compile quarterly reports</strong> on library activities, acquisitions, and stocktaking for the court's administration.</li>
+                            <li>Participated in <strong>stocktaking</strong> of legal resources, including case files, statutes, and periodicals.</li>
+                            <li>Organized, classified, and secured court case files, legal documents, and archival materials in compliance with judicial standards.</li>
+                            <li>Supported digitization of legal documents and developed a searchable electronic index, improving retrieval efficiency by 30%.</li>
+                            <li>Provided reference services to judges, magistrates, prosecutors, and legal researchers.</li>
+                            <li><strong>Key Achievement:</strong> Digitized and catalogued over 500 historical court case files, reducing retrieval time and enhancing access.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="main-section">
+                    <h3>Education</h3>
+                    <div class="edu-entry">
+                        <div class="edu-title">BSc Information Science</div>
+                        <div class="edu-meta">Meru University of Science &amp; Technology · Nov 2020 – Oct 2024</div>
+                        <div class="edu-note">
+                            Presented research on <em>"Impact of Google Search Algorithm in Students' Decision-Making and Information Retrieval"</em>
+                        </div>
+                    </div>
+                    <div class="edu-entry">
+                        <div class="edu-title">Kenya Certificate of Secondary Education</div>
+                        <div class="edu-meta">Nyarach Mixed Day Secondary · Jan 2015 – Nov 2019</div>
+                        <div class="edu-note">
+                            Achieved mean grade of C+; led a study group that improved class performance by 15%.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="main-section">
+                    <h3>References</h3>
+                    <div class="ref-grid">
+                        <div class="ref-card">
+                            <strong>Silas Otieno</strong>
+                            7 Hills International School · Uganda<br>
+                            <i class="fas fa-phone-alt"></i> +254707445341<br>
+                            <i class="fas fa-envelope"></i> silasotienozacjimmy@gmail.com
+                        </div>
+                        <div class="ref-card">
+                            <strong>George Okoth</strong>
+                            US Army &amp; Priest<br>
+                            <i class="fas fa-phone-alt"></i> +12017535656<br>
+                            <i class="fas fa-envelope"></i> Geokth@yahoo.com
+                        </div>
+                        <div class="ref-card">
+                            <strong>John Nganga Gitau</strong>
+                            Lecturer &amp; Head of Library and Information Science<br>
+                            Meru University of Science and Technology<br>
+                            <i class="fas fa-phone-alt"></i> +254720877605<br>
+                            <i class="fas fa-envelope"></i> jgitau@must.ac.ke
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
-        <!-- ============ RIGHT MAIN CONTENT ============ -->
-        <div class="resume-main">
+        <div class="footer-note">
+            <i class="fas fa-file-pdf"></i> Click the download button to save this resume as a PDF.
+        </div>
+    </div>
 
-            <!-- Header -->
-            <div class="main-header">
-                <h1>Celestino Otieno</h1>
-                <h2>School Librarian &amp; ICT Educator · System Librarian</h2>
-            </div>
+    <!-- =================================================== -->
+    <!-- ============ SECTION: ARTICLE (About a Librarian) == -->
+    <!-- =================================================== -->
+    <div class="section" id="section-librarian">
 
-            <!-- Summary -->
-            <div class="main-section">
-                <h3>Summary</h3>
-                <p class="summary-text">
-                    Accomplished Information Professional with 3+ years of experience in library management, ICT systems, and records administration. <strong>Expert in Koha ILS</strong> — implemented, configured, and managed circulation, cataloguing, and reporting at Kenya National Library Service and Lukenya British Curriculum School. Proven track record of digital transformation, ISO 15489 records management, and staff training. Recognized for measurable impact: <strong>60% reduction in misfiling, 45% growth in ICT club membership, and 25% improvement in research retrieval times.</strong>
+        <!-- Article toolbar with download button -->
+        <div class="article-toolbar">
+            <h2><i class="fas fa-newspaper"></i> Featured Article</h2>
+            <button class="btn-download" id="downloadArticleBtn">
+                <i class="fas fa-file-pdf"></i> Download Article (PDF)
+            </button>
+        </div>
+
+        <!-- Article container (downloadable) -->
+        <div class="article-container" id="articleDocument">
+
+            <!-- Article header with author info -->
+            <div class="article-header">
+                <div class="article-kicker">
+                    <i class="fas fa-book-reader"></i> Librarianship · Professional Insight
+                </div>
+                <h1>About a Librarian: Roles, Responsibilities, and the Evolving Profession</h1>
+                <p class="article-subtitle">
+                    A comprehensive exploration of the librarian's role—from traditional custodianship of knowledge to digital curation, information literacy, ethics, space management, and student engagement in the modern information age.
                 </p>
-            </div>
 
-            <!-- Experience -->
-            <div class="main-section">
-                <h3>Experience</h3>
-
-                <div class="exp-entry">
-                    <div class="exp-header">
-                        <span class="exp-title">School Librarian &amp; ICT Educator</span>
-                        <span class="exp-date">Aug 2024 – Present</span>
-                    </div>
-                    <span class="exp-org">Lukenya British Curriculum School | Machakos</span>
-                    <ul>
-                        <li>Manage full records lifecycle: creation, classification, retention scheduling, and secure disposal of institutional records.</li>
-                        <li>Implement electronic document management system (EDMS) for student records, staff files, and administrative archives.</li>
-                        <li><strong>Oversee library operations using Koha ILS</strong> for circulation, cataloguing, and reporting; maintain hybrid collections.</li>
-                        <li>Provide tier-2/3 technical support for 200+ users across hardware, network, and library systems.</li>
-                        <li>ICT Club Leader: grew membership by 45% within one academic year through coding workshops and annual tech fair.</li>
-                        <li>Deliver Cambridge ICT and Computing curricula to A-Level and O-Level students with practical lab sessions.</li>
-                        <li><strong>Achievements:</strong> Reduced misfiling by 60% via structured classification; digitized 5+ years of student academic records.</li>
-                    </ul>
-                </div>
-
-                <div class="exp-entry">
-                    <div class="exp-header">
-                        <span class="exp-title">System Librarian</span>
-                        <span class="exp-date">May 2024 – Aug 2024</span>
-                    </div>
-                    <span class="exp-org">Kenya National Library Service | Nakuru</span>
-                    <ul>
-                        <li><strong>Managed and optimized Koha ILS</strong> — configured circulation rules, catalogued with MARC21 and DDC, and generated analytical reports for library management.</li>
-                        <li>Assisted in records inventory and archival management for historical government publications.</li>
-                        <li>Provided end-user support and IT orientation; delivered hands-on training in MS Office suite and digital literacy.</li>
-                        <li>Designed and delivered accessible ICT programs for persons with disabilities, empowering diverse learners.</li>
-                        <li><strong>Achievements:</strong> Trained 50+ staff and community members; redesigned finding aids reducing research time by 25%.</li>
-                    </ul>
-                </div>
-
-                <div class="exp-entry">
-                    <div class="exp-header">
-                        <span class="exp-title">Assistant Librarian Intern</span>
-                        <span class="exp-date">May 2023 – Aug 2023</span>
-                    </div>
-                    <span class="exp-org">Meru Law Courts | Meru</span>
-                    <ul>
-                        <li><strong>Catalogued new legal publications using Koha ILS</strong>; ensured accurate shelving and accessibility.</li>
-                        <li>Organized, classified, and secured court case files, legal documents, and archival materials in compliance with judicial standards.</li>
-                        <li>Supported digitization of legal documents and developed a searchable electronic index, improving retrieval efficiency by 30%.</li>
-                        <li>Provided reference services to judges, magistrates, prosecutors, and legal researchers.</li>
-                        <li><strong>Key Achievement:</strong> Digitized and catalogued over 500 historical court case files, reducing retrieval time and enhancing access for legal professionals.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Education -->
-            <div class="main-section">
-                <h3>Education</h3>
-
-                <div class="edu-entry">
-                    <div class="edu-title">BSc Information Science</div>
-                    <div class="edu-meta">Meru University of Science &amp; Technology · Nov 2020 – Oct 2024</div>
-                    <div class="edu-note">
-                        Presented research on <em>"Impact of Google Search Algorithm in Students' Decision-Making and Information Retrieval"</em>
-                    </div>
-                </div>
-
-                <div class="edu-entry">
-                    <div class="edu-title">Kenya Certificate of Secondary Education</div>
-                    <div class="edu-meta">Nyarach Mixed Day Secondary · Jan 2015 – Nov 2019</div>
-                    <div class="edu-note">
-                        Achieved mean grade of C+; led a study group that improved class performance by 15%.
+                <!-- Author block -->
+                <div class="article-author-block">
+                    <div class="article-author-avatar">CO</div>
+                    <div class="article-author-details">
+                        <div class="author-label">Written by</div>
+                        <h3>Celestino Onyango Otieno</h3>
+                        <div class="author-role">Librarian · Information Analyst · Record Manager</div>
+                        <div class="author-meta">
+                            <span><i class="fas fa-graduation-cap"></i> BSc Information Science</span>
+                            <span><i class="fas fa-certificate"></i> Koha ILS &amp; ISO 15489 Certified</span>
+                            <span><i class="fas fa-map-pin"></i> Nairobi, Kenya</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- References -->
-            <div class="main-section">
-                <h3>References</h3>
-                <div class="ref-grid">
-                    <div class="ref-card">
-                        <strong>Silas Otieno</strong>
-                        7 Hills International School · Uganda<br>
-                        <i class="fas fa-phone-alt"></i> +254707445341<br>
-                        <i class="fas fa-envelope"></i> silasotienozacjimmy@gmail.com
-                    </div>
-                    <div class="ref-card">
-                        <strong>George Okoth</strong>
-                        US Army &amp; Priest<br>
-                        <i class="fas fa-phone-alt"></i> +12017535656<br>
-                        <i class="fas fa-envelope"></i> Geokth@yahoo.com
-                    </div>
-                    <div class="ref-card">
-                        <strong>John Nganga Gitau</strong>
-                        Lecturer &amp; Head of Library and Information Science<br>
-                        Meru University of Science and Technology<br>
-                        <i class="fas fa-phone-alt"></i> +254720877605<br>
-                        <i class="fas fa-envelope"></i> jgitau@must.ac.ke
-                    </div>
-                </div>
+            <!-- Article body -->
+            <div class="article-body">
+
+                <h2><i class="fas fa-user-tie"></i> Introduction: Who is a Librarian?</h2>
+                <p>A librarian is a trained professional who specializes in the organization, management, and dissemination of information, ensuring that users have access to the knowledge and resources they need. Traditionally associated with physical collections, the role has evolved to encompass digital resources, online databases, and electronic repositories.</p>
+                <p>At the heart of a librarian's role is the management of information resources in a way that makes them accessible and useful to all types of users. They are not merely information gatekeepers but also educators, helping individuals develop the skills needed to identify, evaluate, and use information critically and ethically.</p>
+                <p>While archivists, information managers, and data scientists may share some responsibilities, librarians focus on creating systems and services that ensure information is accessible to a wide range of users. Unlike archivists, who are primarily concerned with preserving historical documents, librarians facilitate ongoing access to information. The professional identity of a librarian has undergone significant transformation—from stewards of physical collections to managers of digital repositories, information literacy educators, research data specialists, and technology integrators.</p>
+
+                <blockquote>
+                    <strong>Key shift:</strong> Librarians are now proactive educators, technologists, and data specialists in a rapidly evolving digital world—bridging the gap between technology and users.
+                </blockquote>
+
+                <h2><i class="fas fa-tasks"></i> Primary Functions &amp; Responsibilities</h2>
+                <p>In today's evolving information landscape, the role of a librarian has expanded significantly. Their function goes far beyond organizing physical books—they are information professionals, educators, and advocates for equitable access to knowledge.</p>
+
+                <h3>Information Organization &amp; Management</h3>
+                <ul>
+                    <li>Cataloguing and classifying physical materials using systems like Dewey Decimal or Library of Congress.</li>
+                    <li>Using advanced metadata, tagging, and indexing for digital collections.</li>
+                    <li>Managing digital repositories, institutional archives, and e-book collections.</li>
+                    <li>Ensuring information is discoverable, properly catalogued, updated, and accessible.</li>
+                </ul>
+
+                <h3>Promoting Information Literacy</h3>
+                <ul>
+                    <li>Teaching users how to navigate, evaluate, and use information effectively.</li>
+                    <li>Collaborating with faculty to integrate information literacy into curricula.</li>
+                    <li>Offering workshops on database use (JSTOR, Google Scholar), source credibility, and citation.</li>
+                    <li>Guiding users in discerning reliable sources amid misinformation.</li>
+                </ul>
+
+                <h3>Digital Resource Management</h3>
+                <ul>
+                    <li>Overseeing e-books, digital journals, multimedia files, and institutional archives.</li>
+                    <li>Using cloud storage, digital preservation tools, and integrated library management systems (ILMS).</li>
+                    <li>Managing digital lending platforms (e.g., OverDrive, Libby, Snapplify).</li>
+                </ul>
+
+                <h3>Research Assistance &amp; Support</h3>
+                <ul>
+                    <li>Helping students, faculty, and researchers locate scholarly articles and primary sources.</li>
+                    <li>Guiding data management plans, data curation, and preservation.</li>
+                    <li>Offering citation management support (APA, MLA, Chicago; Zotero, EndNote).</li>
+                </ul>
+
+                <h3>Advocating for Intellectual Freedom &amp; Privacy</h3>
+                <ul>
+                    <li>Ensuring patrons can access information freely without censorship.</li>
+                    <li>Protecting user privacy—borrowing histories, search queries, and personal data.</li>
+                    <li>Navigating copyright and intellectual property laws ethically.</li>
+                </ul>
+
+                <h3>Community Engagement &amp; Programming</h3>
+                <ul>
+                    <li>Organizing community programs, workshops, and events (storytime, book clubs, digital literacy).</li>
+                    <li>Collaborating with faculty on research methodology and data analysis workshops.</li>
+                    <li>Fostering lifelong learning and community building.</li>
+                </ul>
+
+                <h3>Acquisitions, Indexing, Reporting &amp; Stocktaking</h3>
+                <ul>
+                    <li><strong>Initiating orders</strong> for new books, journals, periodicals, and materials needed in the library.</li>
+                    <li><strong>Indexing &amp; abstracting</strong> journal articles for research repositories.</li>
+                    <li><strong>Handling library correspondence</strong> — subscriptions, donations, vendor communications.</li>
+                    <li><strong>Editing &amp; compiling quarterly reports</strong> on library usage, acquisitions, and stocktaking.</li>
+                    <li><strong>Undertaking stocktaking activities</strong> — annual inventory, reconciliation, and discrepancy reporting.</li>
+                </ul>
+
+                <h2><i class="fas fa-star"></i> Essential Skills &amp; Qualities</h2>
+                <p>A librarian requires a unique combination of technical expertise, communication abilities, critical thinking, adaptability, and ethical understanding.</p>
+
+                <h3>Technical Skills</h3>
+                <ul>
+                    <li>Familiarity with classification systems (Dewey Decimal, Library of Congress).</li>
+                    <li>Metadata creation, digital curation, and digital preservation techniques.</li>
+                    <li>Proficiency with integrated library management systems (ILMS) and emerging technologies (AI, machine learning).</li>
+                    <li>Data management, research support, and digital repository management.</li>
+                </ul>
+
+                <h3>Soft Skills</h3>
+                <ul>
+                    <li><strong>Communication:</strong> Understanding user needs, explaining complex concepts accessibly.</li>
+                    <li><strong>Interpersonal:</strong> Approachable, patient, collaborative with colleagues and patrons.</li>
+                    <li><strong>Critical thinking:</strong> Troubleshooting technical issues, devising engagement strategies.</li>
+                    <li><strong>Attention to detail:</strong> Accurate cataloguing and information retrieval.</li>
+                    <li><strong>Adaptability:</strong> Embracing lifelong learning and ongoing professional development.</li>
+                    <li><strong>Ethical understanding:</strong> Navigating copyright, intellectual property, and user privacy.</li>
+                </ul>
+
+                <h2><i class="fas fa-scale-balanced"></i> Ethical Responsibilities</h2>
+                <p>Librarians hold a unique position as stewards of information, tasked with providing equitable access to knowledge, upholding intellectual freedom, and ensuring the privacy and confidentiality of users.</p>
+
+                <h3>Intellectual Freedom &amp; Access to Information</h3>
+                <ul>
+                    <li>Commitment to providing access to diverse materials without censorship.</li>
+                    <li>Resisting efforts to limit access based on political, social, or religious pressures.</li>
+                    <li>Remaining impartial in collection development, avoiding personal bias.</li>
+                    <li>Advocating for the right to access information freely.</li>
+                </ul>
+
+                <h3>Confidentiality &amp; Privacy</h3>
+                <ul>
+                    <li>Protecting sensitive personal information: borrowing records, search queries, usage patterns.</li>
+                    <li>Safeguarding information-seeking behaviors from surveillance or tracking.</li>
+                    <li>Adhering to data protection laws (FERPA, GDPR) and library privacy policies.</li>
+                    <li>Building trust by providing a safe space for exploration.</li>
+                </ul>
+
+                <h3>Equitable Access &amp; Inclusivity</h3>
+                <ul>
+                    <li>Ensuring services are accessible to all, regardless of socioeconomic status, race, gender, age, or ability.</li>
+                    <li>Removing physical, technological, and societal barriers.</li>
+                    <li>Providing adaptive technologies, multilingual materials, and free digital access.</li>
+                    <li>Promoting social justice and inclusion.</li>
+                </ul>
+
+                <h2><i class="fas fa-laptop-code"></i> The Librarian in the Digital Age</h2>
+                <p>In the digital age, the role of a librarian has evolved significantly, adapting to rapid advancements in technology and the growing demand for digital information access.</p>
+
+                <h3>Expanding Roles with Digital Technologies</h3>
+                <ul>
+                    <li>Shift from traditional to digital information management: digital curation, metadata management, software systems.</li>
+                    <li>Managing digital libraries (JSTOR, PubMed, institutional repositories).</li>
+                    <li>Curating open-access content and digital archives.</li>
+                    <li>Advocating for equitable access to information and democratization of knowledge.</li>
+                </ul>
+
+                <h3>Technological Integration: From Cataloguing to AI</h3>
+                <ul>
+                    <li>Adopting AI, machine learning, and automation for cataloguing, search, and recommendations.</li>
+                    <li>AI-powered search engines, predictive algorithms, and chatbots.</li>
+                    <li>Virtual and augmented reality (VR/AR) for immersive content engagement.</li>
+                    <li>Exploring innovations to enhance user experience and access.</li>
+                </ul>
+
+                <h3>Challenges in Digital Transformation</h3>
+                <ul>
+                    <li><strong>Keeping up with technological advancements</strong> — cloud, AI, machine learning, data analytics.</li>
+                    <li><strong>Digital access and equity</strong> — bridging the digital divide.</li>
+                    <li><strong>Data privacy and security</strong> — protecting user data (GDPR, FERPA).</li>
+                    <li><strong>Balancing digital and physical collections.</strong></li>
+                    <li><strong>Training and support for patrons.</strong></li>
+                    <li><strong>Budget constraints and resource allocation.</strong></li>
+                </ul>
+
+                <h2><i class="fas fa-users"></i> Engaging with Patrons</h2>
+                <p>Librarians play a critical role in meeting the information needs of library patrons, engaging with them in a variety of ways to ensure they can access, understand, and utilize information effectively.</p>
+                <ul>
+                    <li><strong>Personalized research assistance:</strong> Helping students, faculty, and researchers navigate specialized databases and evaluate credibility.</li>
+                    <li><strong>Information literacy instruction:</strong> Collaborating with faculty, teaching advanced database features and distinguishing credible sources.</li>
+                    <li><strong>Digital support:</strong> Helping patrons access e-books, journals, and multimedia; supporting job searches and online learning.</li>
+                    <li><strong>Community programs:</strong> Book clubs, storytimes, career workshops, and author talks.</li>
+                    <li><strong>Specialized resources:</strong> Curating rare collections, navigating archives, and providing access to government databases.</li>
+                    <li><strong>Personalized recommendations:</strong> Suggesting articles, books, and journals aligned with research topics and interests.</li>
+                </ul>
+
+                <h2><i class="fas fa-building-columns"></i> Librarian Roles by Library Type</h2>
+                <p>Librarians play a central role in managing information, but their roles vary significantly depending on the type of library they serve.</p>
+
+                <h3>Academic Libraries</h3>
+                <ul>
+                    <li>Support educational and research needs of students, faculty, and researchers.</li>
+                    <li>Manage extensive collections: books, journals, electronic databases, digital archives.</li>
+                    <li>Provide research assistance and teach information literacy.</li>
+                    <li>Manage institutional repositories (theses, dissertations, faculty publications, datasets).</li>
+                </ul>
+
+                <h3>Public Libraries</h3>
+                <ul>
+                    <li>Serve a broad and diverse community with informational, recreational, and educational needs.</li>
+                    <li>Manage books, magazines, e-books, audiobooks, DVDs, and digital media.</li>
+                    <li>Engage patrons through reading recommendations, book clubs, and educational programs.</li>
+                    <li>Foster community engagement through author talks, storytimes, and outreach.</li>
+                </ul>
+
+                <h3>Special Libraries</h3>
+                <ul>
+                    <li>Found in corporations, law firms, hospitals, government agencies, research institutions.</li>
+                    <li>Provide access to specialized information: legal documents, medical journals, patents, corporate reports.</li>
+                    <li>Curate, organize, and manage niche collections for specific organizational functions.</li>
+                    <li>Manage information systems, digital archiving, records management, and content management.</li>
+                </ul>
+
+                <h2><i class="fas fa-landmark"></i> Preserving Cultural Heritage</h2>
+                <p>Librarians play a crucial role in preserving cultural heritage and historical records, ensuring that future generations have access to the knowledge and resources of the past.</p>
+                <ul>
+                    <li><strong>Stewards of historical materials:</strong> Managing rare and fragile items, ensuring optimal storage conditions.</li>
+                    <li><strong>Digital preservation:</strong> Implementing long-term strategies: sustainable file formats, metadata standards.</li>
+                    <li><strong>Protecting heritage in crisis:</strong> Collaborating with UNESCO to safeguard at-risk records in conflict zones.</li>
+                    <li><strong>Ensuring accessibility:</strong> Creating digital catalogs, finding aids, and educational programs.</li>
+                    <li><strong>Inclusive preservation:</strong> Protecting indigenous knowledge, oral histories, and marginalized communities' narratives.</li>
+                </ul>
+
+                <h2><i class="fas fa-couch"></i> Library Space Management &amp; Impact</h2>
+                <p>The modern library is far more than a storage room for books—it is a dynamic learning environment. Effective space management directly impacts student achievement, staff productivity, and the overall perception of the library as a hub of the school community.</p>
+
+                <h3>Designing Functional Learning Zones</h3>
+                <ul>
+                    <li><strong>Quiet study zones:</strong> Individual carrels and silent areas for deep reading, revision, and exam preparation.</li>
+                    <li><strong>Collaborative zones:</strong> Group tables, whiteboards, and flexible seating for project work and peer learning.</li>
+                    <li><strong>Digital access zones:</strong> Computer banks, charging stations, and e-library terminals.</li>
+                    <li><strong>Reading for pleasure corner:</strong> Comfortable seating with easy access to fiction and magazines.</li>
+                    <li><strong>Multimedia &amp; maker space:</strong> Equipment for video, audio, coding, and creative projects.</li>
+                </ul>
+
+                <h3>Measuring the Impact of Library Space</h3>
+                <ul>
+                    <li><strong>Usage statistics:</strong> Footfall counts, seat occupancy, computer logins, and borrowing rates.</li>
+                    <li><strong>Learning outcomes:</strong> Correlation between library visits and student attainment or reading scores.</li>
+                    <li><strong>User satisfaction:</strong> Surveys and suggestion boxes to gauge comfort, accessibility, and relevance.</li>
+                    <li><strong>Behavioural impact:</strong> Reduction in disruptive behaviour and increased on-task time.</li>
+                </ul>
+
+                <blockquote>
+                    <strong>Impact insight:</strong> A well-managed library space can increase student engagement by up to 30%, improve research skills, and foster a lifelong love of reading.
+                </blockquote>
+
+                <h2><i class="fas fa-people-arrows"></i> Coordination with Teachers &amp; Staff</h2>
+                <p>A school library thrives when the librarian works in close partnership with teaching staff. Coordination ensures that library resources, services, and programmes directly support the curriculum and the professional needs of all staff.</p>
+
+                <h3>Curriculum Collaboration</h3>
+                <ul>
+                    <li>Attending department meetings to understand upcoming topics and assignments.</li>
+                    <li>Co-planning research projects and information literacy sessions with teachers.</li>
+                    <li>Curating resource lists, pathfinders, and reading recommendations aligned to units of study.</li>
+                    <li>Providing subject-specific database training for teachers and students.</li>
+                </ul>
+
+                <h3>Resource &amp; Collection Development</h3>
+                <ul>
+                    <li>Gathering teacher requests for new books, journals, and digital resources.</li>
+                    <li>Initiating acquisition orders based on curriculum needs and staff recommendations.</li>
+                    <li>Keeping staff informed of new arrivals, trials, and subscriptions.</li>
+                    <li>Managing inter-library loans and resource sharing with other institutions.</li>
+                </ul>
+
+                <h3>Professional Support for Staff</h3>
+                <ul>
+                    <li>Providing research support for teachers pursuing further study or professional development.</li>
+                    <li>Offering training on citation tools, academic databases, and information management.</li>
+                    <li>Supporting staff with copyright and intellectual property queries.</li>
+                    <li>Assisting with the preparation of teaching materials and presentations.</li>
+                </ul>
+
+                <h2><i class="fas fa-child"></i> Student Support &amp; Engagement</h2>
+                <p>The library is uniquely positioned to support every student—academically, socially, and emotionally. A student-centred library promotes reading for pleasure, independent learning, and a sense of belonging.</p>
+
+                <h3>Academic Support</h3>
+                <ul>
+                    <li><strong>Research help:</strong> One-on-one and group sessions on finding, evaluating, and citing sources.</li>
+                    <li><strong>Study skills:</strong> Workshops on note-taking, time management, and exam revision techniques.</li>
+                    <li><strong>Homework club:</strong> A supervised after-school space with access to resources and peer support.</li>
+                    <li><strong>Reading interventions:</strong> Targeted support for struggling readers, including hi-lo books and audio resources.</li>
+                </ul>
+
+                <h3>Reading for Pleasure &amp; Literacy</h3>
+                <ul>
+                    <li>Book clubs, reading challenges, and author visits to build a reading culture.</li>
+                    <li>Displays and recommendations that reflect student interests and diversity.</li>
+                    <li>Celebrating events like World Book Day and National Poetry Day.</li>
+                    <li>Peer reading schemes and reading buddies for younger students.</li>
+                </ul>
+
+                <h3>Digital &amp; Media Literacy</h3>
+                <ul>
+                    <li>Teaching students to evaluate online information and identify misinformation.</li>
+                    <li>Safe and responsible use of social media, AI tools, and digital platforms.</li>
+                    <li>Support with e-library platforms (Snapplify) and digital borrowing.</li>
+                    <li>Coding clubs, podcasting, and creative media projects.</li>
+                </ul>
+
+                <h3>Wellbeing &amp; Inclusion</h3>
+                <ul>
+                    <li>Creating a calm, safe space for students who need a quiet retreat.</li>
+                    <li>Books and resources that support mental health, identity, and diversity.</li>
+                    <li>Celebrating neurodiversity and providing sensory-friendly resources.</li>
+                    <li>Partnerships with counsellors and pastoral staff to support vulnerable students.</li>
+                </ul>
+
+                <blockquote>
+                    <strong>Engagement impact:</strong> Schools with active student library programmes report higher reading ages, improved research confidence, and stronger student-teacher relationships.
+                </blockquote>
+
+                <h2><i class="fas fa-gears"></i> Resource &amp; Operational Support</h2>
+                <p>Behind every effective library service is a foundation of sound resource management, efficient operations, and reliable administrative support. These functions ensure the library runs smoothly and remains responsive to user needs.</p>
+
+                <h3>Acquisitions &amp; Collection Development</h3>
+                <ul>
+                    <li><strong>Initiating orders</strong> for new books, journals, periodicals, and digital resources.</li>
+                    <li>Evaluating and selecting suppliers and vendors.</li>
+                    <li>Managing budgets, quotations, and purchase approvals.</li>
+                    <li>Receiving, processing, and cataloguing new materials.</li>
+                    <li>Weeding and deselection of outdated or damaged stock.</li>
+                </ul>
+
+                <h3>Cataloguing, Classification &amp; Indexing</h3>
+                <ul>
+                    <li>Applying MARC21, AACR2, RDA, DDC, and LCC standards.</li>
+                    <li>Indexing and abstracting journal articles for easy retrieval.</li>
+                    <li>Maintaining authority files and accurate metadata.</li>
+                    <li>Ensuring consistency and quality control in the catalogue.</li>
+                </ul>
+
+                <h3>Records Management &amp; Archiving</h3>
+                <ul>
+                    <li>Managing the full records lifecycle: creation, classification, retention, disposal.</li>
+                    <li>Implementing ISO 15489 records management standards.</li>
+                    <li>Maintaining electronic document management systems (EDMS).</li>
+                    <li>Preserving institutional archives and historical records.</li>
+                    <li>Ensuring confidentiality and secure access to sensitive records.</li>
+                </ul>
+
+                <h3>Library Systems &amp; Technology</h3>
+                <ul>
+                    <li>Administering Koha ILS: circulation, cataloguing, reports, and backups.</li>
+                    <li>Managing Snapplify and other e-library platforms.</li>
+                    <li>Supporting hardware, network, and printing in the library.</li>
+                    <li>Troubleshooting technical issues and liaising with IT support.</li>
+                    <li>Implementing cybersecurity best practices for library systems.</li>
+                </ul>
+
+                <h3>Policy, Compliance &amp; Risk Management</h3>
+                <ul>
+                    <li>Developing and implementing library policies (loans, behaviour, collection).</li>
+                    <li>Ensuring compliance with copyright, data protection, and safeguarding laws.</li>
+                    <li>Risk assessments for library spaces and equipment.</li>
+                    <li>Fire safety, infection prevention, and emergency procedures.</li>
+                </ul>
+
+                <h2><i class="fas fa-graduation-cap"></i> Academic Librarian Qualifications</h2>
+                <p>The role of a librarian in an academic setting is dynamic and multifaceted, demanding a diverse set of qualifications to effectively support students, faculty, and researchers.</p>
+                <ul>
+                    <li><strong>Educational qualifications:</strong> Master's degree in Library Science (MLS) or Library and Information Studies (MLIS) from an accredited institution.</li>
+                    <li><strong>Research &amp; information literacy skills:</strong> Proficiency in academic databases, digital repositories, and research tools; ability to teach information literacy.</li>
+                    <li><strong>Technological proficiency:</strong> Managing digital collections, databases, and e-resources; expertise in digital cataloguing, metadata creation, and database management.</li>
+                    <li><strong>Subject knowledge &amp; specialization:</strong> Many academic librarians specialize in specific disciplines to provide tailored research support.</li>
+                    <li><strong>Communication &amp; interpersonal skills:</strong> Interacting with diverse users, leading workshops, collaborating with faculty and staff.</li>
+                    <li><strong>Organizational &amp; management skills:</strong> Overseeing library operations, managing staff, budgeting, planning programs.</li>
+                    <li><strong>Commitment to professional development:</strong> Staying current with trends, technologies, and best practices.</li>
+                </ul>
+
+                <h2><i class="fas fa-lightbulb"></i> Conclusion</h2>
+                <p>The role of a librarian is diverse, dynamic, and indispensable. From managing physical and digital collections to teaching information literacy, preserving cultural heritage, and supporting student wellbeing, librarians are the connective tissue between information and the people who need it. As technology continues to evolve, so too will the profession—but the core mission remains unchanged: to ensure equitable access to knowledge, foster critical thinking, and build stronger, more informed communities.</p>
+                <p>Whether in a school, public, academic, or special library, the librarian's impact extends far beyond the shelves. They are educators, analysts, record managers, and advocates—champions of information freedom and lifelong learning.</p>
+
             </div>
 
+            <!-- Article footer -->
+            <div class="article-footer">
+                <div class="article-citation">
+                    <strong>Recommended citation:</strong><br>
+                    Otieno, C. O. (2026). <em>About a Librarian: Roles, Responsibilities, and the Evolving Profession.</em> Professional Insight Article.
+                </div>
+                <div class="article-citation" style="text-align: right;">
+                    <strong>Author:</strong> Celestino Onyango Otieno<br>
+                    Librarian · Information Analyst · Record Manager
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <div class="footer-note">
-        <i class="fas fa-file-pdf"></i> Click the download button to save this resume as a PDF.
-    </div>
-
+    <!-- ================= SCRIPTS ================= -->
     <script>
         (function() {
+            /* ========== MAIN TABS (Resume / Article) ========== */
+            const mainTabButtons = document.querySelectorAll('.main-tab-btn');
+            const sections = document.querySelectorAll('.section');
+
+            function switchMainTab(targetId) {
+                mainTabButtons.forEach(btn => btn.classList.remove('active'));
+                sections.forEach(sec => sec.classList.remove('active'));
+
+                const btn = document.querySelector(`.main-tab-btn[data-main-tab="${targetId}"]`);
+                const section = document.getElementById(targetId);
+                if (btn) btn.classList.add('active');
+                if (section) section.classList.add('active');
+            }
+
+            mainTabButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    switchMainTab(this.getAttribute('data-main-tab'));
+                });
+            });
+
+            /* ========== PDF DOWNLOAD - RESUME ========== */
             const overlay = document.getElementById('loadingOverlay');
-            const downloadBtn = document.getElementById('downloadResumeBtn');
+            const downloadResumeBtn = document.getElementById('downloadResumeBtn');
+            const downloadArticleBtn = document.getElementById('downloadArticleBtn');
 
-            function showLoading() {
-                overlay.style.display = 'flex';
-            }
-            function hideLoading() {
-                overlay.style.display = 'none';
-            }
+            function showLoading() { overlay.style.display = 'flex'; }
+            function hideLoading() { overlay.style.display = 'none'; }
 
-            downloadBtn.addEventListener('click', function(e) {
+            // Resume download
+            downloadResumeBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 showLoading();
 
@@ -787,6 +1784,43 @@
                     console.error('PDF error:', err);
                     hideLoading();
                     alert('There was an error generating the PDF. Please try again.');
+                });
+            });
+
+            // Article download
+            downloadArticleBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                showLoading();
+
+                const source = document.getElementById('articleDocument');
+                const clone = source.cloneNode(true);
+
+                const opt = {
+                    margin: [0, 0, 0, 0],
+                    filename: 'About_a_Librarian_Article_Celestino_Otieno.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: {
+                        scale: 2,
+                        letterRendering: true,
+                        useCORS: true,
+                        logging: false,
+                        scrollY: 0,
+                        scrollX: 0
+                    },
+                    jsPDF: {
+                        unit: 'in',
+                        format: 'a4',
+                        orientation: 'portrait'
+                    },
+                    pagebreak: { mode: ['css', 'legacy'] }
+                };
+
+                html2pdf().set(opt).from(clone).save().then(() => {
+                    hideLoading();
+                }).catch((err) => {
+                    console.error('PDF error:', err);
+                    hideLoading();
+                    alert('There was an error generating the article PDF. Please try again.');
                 });
             });
         })();
